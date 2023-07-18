@@ -6,7 +6,8 @@ This is a bash script that allows you to quickly check the status of a one or mo
 To use the Status Service Checker, you'll need to download the status-service.sh script and make it executable. You can do this with the following commands:
 
 ```bash
-wget https://github.com/MoeinTavakoli/status-service-checker/status-service.sh
+git clone https://github.com/MoeinTavakoli/status-service-checker.git
+cd status-service-checker
 chmod +x status-service.sh
 ```
 
