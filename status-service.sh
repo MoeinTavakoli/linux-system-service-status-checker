@@ -13,14 +13,15 @@ else
     for service in ${list_services[@]}; 
       do
         status=$(systemctl show $service | grep ActiveState | cut -f2 -d "=")
+        BLUE='\033[1;34m'
         NC='\033[0m' # No Color
         if [ $status = 'active' ]
           then
             GREEN='\033[0;32m'
-            echo -e "status $service is : ${GREEN}$status${NC}"
+            echo -e "status ${BLUE}$service${NC} is : ${GREEN}$status${NC}"
           else
             RED='\033[0;31m'
-            echo -e "status $service is : ${RED}$status${NC}"
+            echo -e "status ${BLUE}$service${NC} is : ${RED}$status${NC}"
           fi
       done
 fi
