@@ -24,7 +24,7 @@ else
 
     for service in ${list_services[@]}; 
       do
-        status=$(systemctl show $service | grep ActiveState | cut -f2 -d "=")
+        status=$(systemctl is-active $service)
         BLUE='\033[1;34m'
         NC='\033[0m' # No Color
         if [ $status = 'active' ]
