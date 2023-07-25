@@ -1,8 +1,20 @@
 #!/bin/bash
 
-list_services=$(systemctl list-units --al | grep $1 | awk '{print $1}')
+echo $1
 
-count_service=$(systemctl list-units --all | grep $1 | awk '{print $1}' | wc -l)
+
+if [ $1 == "all" ]
+  then
+    list_services=$(systemctl list-units --all  | awk '{print $1}')
+    count_service=$(systemctl list-units --all  | awk '{print $1}' | wc -l)
+
+  else
+
+    list_services=$(systemctl list-units --all | grep $1 | awk '{print $1}')
+    count_service=$(systemctl list-units --all | grep $1 | awk '{print $1}' | wc -l)
+
+fi
+
 
 if [ $count_service == 0 ]
 then
