@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo $1
-
-
 if [ $1 == "all" ]
   then
     list_services=$(systemctl list-units --all  | awk '{print $1}')
