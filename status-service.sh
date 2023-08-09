@@ -1,15 +1,12 @@
 #!/bin/bash
 
-if [ $1 == "all" ]
+if [[ -z $1 || $1 == "all" ]]
   then
     list_services=$(systemctl list-units --all  | awk '{print $1}')
     count_service=$(systemctl list-units --all  | awk '{print $1}' | wc -l)
-
   else
-
     list_services=$(systemctl list-units --all | grep $1 | awk '{print $1}')
     count_service=$(systemctl list-units --all | grep $1 | awk '{print $1}' | wc -l)
-
 fi
 
 
