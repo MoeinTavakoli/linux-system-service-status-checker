@@ -21,7 +21,7 @@ else
         status=$(systemctl is-active $service)
         BLUE='\033[1;34m'
         NC='\033[0m' # No Color
-        if [ $status = 'active' ]
+        if [ $status == 'active' ]
           then
             GREEN='\033[0;32m'
             echo -e "status ${BLUE}$service${NC} is : ${GREEN}$status${NC}"
