@@ -1,8 +1,14 @@
 #!/bin/bash
 
-list_services=$(systemctl list-units --al | grep $1 | awk '{print $1}')
+if [[ -z $1 || $1 == "all" ]]
+  then
+    list_services=$(systemctl list-units --all  | grep -v "●" | awk '{print $1}')
+    count_service=$(systemctl list-units --all  | grep -v "●" | awk '{print $1}' | wc -l)
+  else
+    list_services=$(systemctl list-units --all | grep $1 | awk '{print $1}')
+    count_service=$(systemctl list-units --all | grep $1 | awk '{print $1}' | wc -l)
+fi
 
-count_service=$(systemctl list-units --all | grep $1 | awk '{print $1}' | wc -l)
 
 if [ $count_service == 0 ]
 then
@@ -12,10 +18,10 @@ else
 
     for service in ${list_services[@]}; 
       do
-        status=$(systemctl show $service | grep ActiveState | cut -f2 -d "=")
+        status=$(systemctl is-active $service)
         BLUE='\033[1;34m'
         NC='\033[0m' # No Color
-        if [ $status = 'active' ]
+        if [ $status == 'active' ]
           then
             GREEN='\033[0;32m'
             echo -e "status ${BLUE}$service${NC} is : ${GREEN}$status${NC}"
